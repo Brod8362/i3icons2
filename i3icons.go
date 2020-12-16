@@ -13,7 +13,8 @@ import (
 
 func main() {
 	// handle command line arguments
-	var configFileName = flag.String("c", "/etc/i3icons2.config", "config file")
+	var configPath = fmt.Sprintf("%s/.config/i3icons2.config", os.Getenv("HOME"))
+	var configFileName = flag.String("c", configPath, "config file")
 	flag.Parse()
 
 	// Open our configFile
@@ -30,6 +31,9 @@ func main() {
 	configLines := strings.Split(string(byteValue), "\n")
 	config := make(map[string]string)
 	for _, ci := range configLines {
+		if strings.HasPrefix(string(ci), "#") {
+			continue //add comment support in the icons file
+		}
 		p := strings.Split(string(ci), "=")
 		if len(p) == 2 {
 			config[p[0]] = p[1]
