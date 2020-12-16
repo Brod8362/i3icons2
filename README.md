@@ -1,6 +1,8 @@
 # i3icons2
 go version of i3icons - native deamon to rename workspaces with fontawesome-icons based on open applications
 
+This version is a fork that organizes the list of software and moves your config file to `~/.config/i3icons2.config` because having a global config in `/etc` is a bit silly. The default config is still copied to `/etc`.
+
 **It's recommended to have fontawesome-icons v5**
 
 ## i3 config to switch to a workspace by number, not by name
