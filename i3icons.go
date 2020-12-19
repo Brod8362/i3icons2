@@ -112,19 +112,8 @@ func EventLoop(events chan i3ipc.Event, ipcsocket *i3ipc.IPCSocket, config map[s
 					// rename window to config item, if present
 					if val, ok := config[winname]; ok {
 						winname = val
-					} else if len(winname) > 1 {
-						winname = fmt.Sprintf("%s%s", strings.ToUpper(winname[:1]), winname[1:])
 					}
-					// check if workspace name already contains window title
-					choose := true
-					for _, n := range windownames {
-						if strings.Compare(n, winname) == 0 {
-							choose = false
-						}
-					}
-					if choose {
-						windownames[i] = winname
-					}
+					windownames[i] = winname
 				}
 				// rename workspace
 				for _, windowname := range windownames {
